@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,8 +20,7 @@ namespace UserMaintenance
         public Form1()
         {
             InitializeComponent();
-            label1.Text = Resource1.LastName;
-            label2.Text = Resource1.FirstName;
+            label1.Text = Resource1.FullName;
             button1.Text = Resource1.Add;
 
             listBox1.DataSource = users;
@@ -30,12 +30,17 @@ namespace UserMaintenance
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            var u = new User()
+            SaveFileDialog sfd = new SaveFileDialog();
+            if (sfd.ShowDialog() == DialogResult.OK) return;
+            using (StreamWriter sw=new StreamWriter(sfd.FileName, false, Encoding.UTF8))
             {
-                LastName = textBox1.Text,
-                FirstName = textBox2.Text
-            };
-            users.Add(u);
+                foreach (User item in users)
+                {
+                    sw.Write(item.FullName);
+                    sw.Write(';');
+                    sw.WriteLine();
+                }
+            }
         }
     }
 }
