@@ -22,6 +22,7 @@ namespace UserMaintenance
             InitializeComponent();
             label1.Text = Resource1.FullName;
             button1.Text = Resource1.Add;
+            button2.Text = Resource1.Save;
 
             listBox1.DataSource = users;
             listBox1.ValueMember = "ID";
@@ -30,17 +31,35 @@ namespace UserMaintenance
 
         private void Button1_Click(object sender, EventArgs e)
         {
+            User user = new User();
+            user.FullName = textBox1.Text;
+            users.Add(user);
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
             SaveFileDialog sfd = new SaveFileDialog();
-            if (sfd.ShowDialog() == DialogResult.OK) return;
-            using (StreamWriter sw=new StreamWriter(sfd.FileName, false, Encoding.UTF8))
+            sfd.InitialDirectory = Application.StartupPath;
+            sfd.Filter = "Comma Seperated Values (*.csv)|*.csv";
+            sfd.DefaultExt = "csv";
+            sfd.AddExtension = true;
+
+            if (sfd.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            using (StreamWriter sw=new StreamWriter(sfd.FileName,false,Encoding.UTF8))
             {
                 foreach (User item in users)
                 {
+                    sw.Write(item.ID);
+                    sw.Write(';');
                     sw.Write(item.FullName);
                     sw.Write(';');
                     sw.WriteLine();
                 }
             }
         }
+
     }
 }

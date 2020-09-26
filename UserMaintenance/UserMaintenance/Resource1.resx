@@ -118,9 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Add" xml:space="preserve">
-    <value>Kiír</value>
+    <value>Hozzáad</value>
   </data>
   <data name="FullName" xml:space="preserve">
     <value>Teljes Név</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Fájlba írás</value>
   </data>
 </root>
