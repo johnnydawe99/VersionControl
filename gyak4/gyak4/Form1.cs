@@ -98,8 +98,28 @@ namespace gyak4
             GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
             for (int i = 0; i < values.GetLength(0); i++)
             {
-                xlSheet.Cells[i + 2, 9] = "=" + GetCell(i + 2, 7) + GetCell(i + 2, 8);
+                xlSheet.Cells[i + 2, 9] = "=" + GetCell(i + 2, 7) + "/" + GetCell(i + 2, 8);
             }
+            Excel.Range headerRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
+            headerRange.Font.Bold = true;
+            headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            headerRange.EntireColumn.AutoFit();
+            headerRange.RowHeight = 40;
+            headerRange.Interior.Color = Color.LightBlue;
+            headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+
+            Excel.Range TableRange = xlSheet.get_Range(GetCell(1, 1), GetCell(xlSheet.UsedRange.Rows.Count, 9));
+            TableRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            Excel.Range firstCol = xlSheet.get_Range(GetCell(2, 1), GetCell(xlSheet.UsedRange.Rows.Count, 1));
+            firstCol.Interior.Color = Color.LightYellow;
+            firstCol.Font.Bold = true;
+
+            Excel.Range lastcol = xlSheet.get_Range(GetCell(2, 9), GetCell(xlSheet.UsedRange.Rows.Count, 9));
+            lastcol.Interior.Color = Color.LightGreen;
+            lastcol.NumberFormat = "0.00";
         }
 
         private string GetCell(int x, int y)
