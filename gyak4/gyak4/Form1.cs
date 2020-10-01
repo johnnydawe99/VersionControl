@@ -113,11 +113,11 @@ namespace gyak4
             Excel.Range TableRange = xlSheet.get_Range(GetCell(1, 1), GetCell(xlSheet.UsedRange.Rows.Count, 9));
             TableRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
 
-            Excel.Range firstCol = xlSheet.get_Range(GetCell(2, 1), GetCell(xlSheet.UsedRange.Rows.Count, 1));
+            Excel.Range firstCol = xlSheet.get_Range(GetCell(2, 1), GetCell(xlSheet.UsedRange.Rows.Count-1, 1));
             firstCol.Interior.Color = Color.LightYellow;
             firstCol.Font.Bold = true;
 
-            Excel.Range lastcol = xlSheet.get_Range(GetCell(2, 9), GetCell(xlSheet.UsedRange.Rows.Count, 9));
+            Excel.Range lastcol = xlSheet.get_Range(GetCell(2, 9), GetCell(xlSheet.UsedRange.Rows.Count-1, 9));
             lastcol.Interior.Color = Color.LightGreen;
             lastcol.NumberFormat = "0.00";
         }
