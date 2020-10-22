@@ -45,7 +45,7 @@ namespace soap
 
             comboBox1.DataSource = Currencies;
             comboBox1.SelectedItem = "EUR";
-           // RefreshData();
+            RefreshData();
         }
         public void Webszolg()
         {
