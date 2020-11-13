@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace mikulas.Entities
 {
-    public class BallFactory :IToyFactory
+    class PresentFactory : IToyFactory
     {
-        public Color BallColor { get; set; }
+        public Color RibbonColor { get; set; }
+        public Color BoxColor { get; set; }
         public Toy CreateNew()
         {
-            return new Ball(BallColor);
+            return new Present(RibbonColor, BoxColor);
         }
     }
 }
