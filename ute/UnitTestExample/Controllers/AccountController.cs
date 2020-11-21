@@ -36,7 +36,8 @@ namespace UnitTestExample.Controllers
                 Password = password
             };
 
-            return AccountManager.CreateAccount(account);             
+            var newAccount= AccountManager.CreateAccount(account);
+            return newAccount;
         }
 
         public bool ValidateEmail(string email)
